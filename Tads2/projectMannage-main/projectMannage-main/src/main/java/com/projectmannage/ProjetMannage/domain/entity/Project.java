@@ -1,31 +1,54 @@
 package com.projectmannage.ProjetMannage.domain.entity;
 
+import com.projectmannage.ProjetMannage.model.ProjectStatus;
+import jakarta.persistence.*;
 import lombok.*;
-import java.time.LocalDate;
+import org.hibernate.annotations.AnyDiscriminatorImplicitValues;
+import org.springframework.web.bind.annotation.GetMapping;
 
-@Data
+import java.time.LocalDate;
+import java.util.Objects;
+
 @Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table
 public class Project {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id", nullable = false, length = 36)
     private String id;
+
+    @Column(name = "name", nullable = false, length = 80)
     private String name;
+
+    @Column(name = "description", nullable = false, length = 150)
     private String description;
-    private LocalDate initial_data;
-    private LocalDate final_data;
-    private String status;
 
-    public static void main(String[] args) {
+    @Column(name = "initial_date", nullable = false)
+    private LocalDate initialDate;
 
-        Project project = Project.builder()
-                .description("teste")
-                .initial_data(LocalDate.now())
-                .final_data(LocalDate.now())
-                .build();
+    @Column(name = "final_date", nullable = false)
+    private LocalDate finalDate;
 
+    @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private ProjectStatus status;
 
-        System.out.println("ID: " + project.getId());
-        System.out.println("Data Inicial: " + project.getInitial_data());
-    }
+//    public static void main(String[] args) {
+//
+//        Project project = Project.builder()
+//                .description("teste")
+//                .initial_data(LocalDate.now())
+//                .final_data(LocalDate.now())
+//                .build();
+//
+//
+//        System.out.println("ID: " + project.getId());
+//        System.out.println("Data Inicial: " + project.getInitial_data());
+//    }
+
 }
