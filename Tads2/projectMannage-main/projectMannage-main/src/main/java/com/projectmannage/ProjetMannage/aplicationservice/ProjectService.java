@@ -1,4 +1,4 @@
-package com.projectmannage.ProjetMannage.applicationservice;
+package com.projectmannage.ProjetMannage.aplicationservice;
 
 import com.projectmannage.ProjetMannage.domain.entity.Project;
 import com.projectmannage.ProjetMannage.infrastructure.dto.SaveProjectDataDTO;
